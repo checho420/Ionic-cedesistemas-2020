@@ -1,0 +1,7 @@
+{
+  "name": "CedesistemasIonicApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
