@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home/tabs/restaurants"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{item.nombre}}</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-img src={{item.imagen}}></ion-img>
+  <br>
+  <div class="info-container">
+
+    <ion-grid>
+
+      <ion-row>
+        <ion-col>
+          <ion-icon name="star-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="11">
+          {{item.calificacion}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-icon name="call-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="11">
+          {{item.telefono}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-icon name="compass-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="11">
+          {{item.direccion}}
+        </ion-col>
+      </ion-row>
+      
+    </ion-grid>
+
+    <ion-list>
+      <ion-item *ngFor="let prod of products" detail="true"
+  
+      [routerLink]="['/home/tabs/restaurants/detail', item]"
+      routerLinkActive="router-link-active"
+      
+      >
+        
+        <ion-label>
+          <h2>{{prod.nombre}}</h2>
+          <p>$ {{prod.precio}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+
+
+  </div>
+
+</ion-content>

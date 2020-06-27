@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+
+    <ion-input placeholder="Nombre" clearInput value="{{name}}" [(ngModel)]="name" ></ion-input>
+    <ion-input placeholder="Apellido" clearInput value="{{last}}" [(ngModel)]="last"></ion-input>
+    <ion-input placeholder="Edad" type="number" clearInput value="{{yOld}}" [(ngModel)]="yOld"></ion-input>
+
+    <ion-button expand="block" (click)="CreateStudent()">Agregar Estudiante</ion-button>
+
+    <ion-list>
+      <ion-item  *ngFor="let item of students">
+        <ion-label>
+          {{item.name}} {{item.last}} - {{item.yOld}}
+        </ion-label>
+      </ion-item>
+
+    </ion-list>
+
+
+
+    <strong>Ready to create an app?</strong>
+    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer"
+        href="https://ionicframework.com/docs/components">UI Components</a></p>
+  </div>
+</ion-content>
