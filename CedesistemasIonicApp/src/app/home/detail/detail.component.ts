@@ -1,9 +1,11 @@
-import { DetailModel } from './detail.model';
 import { RestaurantsService } from './../restaurants/restaurants.service';
-import { RestaurantsModule } from './../restaurants/restaurants.module';
+import { DetailModel } from './detail.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RestaurantModel } from '../restaurants/restaurant.model';
+
+import { CallNumber } from '@ionic-native/call-number/ngx';
+
 
 @Component({
   selector: 'app-detail',
@@ -14,11 +16,12 @@ export class DetailComponent implements OnInit {
 
 
   item: RestaurantModel;
-  products:DetailModel[];
+  products: DetailModel[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private restaurantsService: RestaurantsService
+    private restaurantsService: RestaurantsService,
+    private callNumber: CallNumber
   ) {
     this.activatedRoute.params.subscribe((paramas: RestaurantModel) => {
 
@@ -44,7 +47,13 @@ export class DetailComponent implements OnInit {
         console.log(this.products);
 
       });
+  }
 
+  callPhone(phone) {
+
+    this.callNumber.callNumber(phone, true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
 
   }
 

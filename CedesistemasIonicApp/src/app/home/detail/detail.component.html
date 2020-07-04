@@ -9,7 +9,18 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-img src={{item.imagen}}></ion-img>
+
+  <div>
+
+    <div class="calification" [style.background-color]="item.calificacion | calification">
+      {{item.calificacion}}
+
+    </div>
+    <ion-img src={{item.imagen}}></ion-img>
+  </div>
+
+
+
   <br>
   <div class="info-container">
 
@@ -24,7 +35,7 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row (click)="callPhone(item.telefono)">
         <ion-col>
           <ion-icon name="call-outline"></ion-icon>
         </ion-col>
@@ -41,17 +52,13 @@
           {{item.direccion}}
         </ion-col>
       </ion-row>
-      
+
     </ion-grid>
 
     <ion-list>
-      <ion-item *ngFor="let prod of products" detail="true"
-  
-      [routerLink]="['/home/tabs/restaurants/detail', item]"
-      routerLinkActive="router-link-active"
-      
-      >
-        
+      <ion-item *ngFor="let prod of products" detail="true" [routerLink]="['/home/tabs/restaurants/detail', item]"
+        routerLinkActive="router-link-active">
+
         <ion-label>
           <h2>{{prod.nombre}}</h2>
           <p>$ {{prod.precio}}</p>
