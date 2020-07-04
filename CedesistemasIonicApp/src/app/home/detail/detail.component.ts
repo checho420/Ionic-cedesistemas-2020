@@ -1,3 +1,4 @@
+import { StorageService } from './../../shared/services/storage.service';
 import { RestaurantsService } from './../restaurants/restaurants.service';
 import { DetailModel } from './detail.model';
 import { Component, OnInit } from '@angular/core';
@@ -21,6 +22,7 @@ export class DetailComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private restaurantsService: RestaurantsService,
+    private storageService: StorageService,
     private callNumber: CallNumber
   ) {
     this.activatedRoute.params.subscribe((paramas: RestaurantModel) => {
@@ -39,14 +41,19 @@ export class DetailComponent implements OnInit {
 
   loadProducts(id) {
 
-    console.log(id);
+    this.storageService.get('products').then((value: any) => {
 
-    this.restaurantsService.getProducts(id)
-      .subscribe((data: DetailModel[]) => {
-        this.products = data;
-        console.log(this.products);
+      if (value) {
+        this.products = value;
+      } else {
+        this.restaurantsService.getProducts(id)
+          .subscribe((data: DetailModel[]) => {
+            this.products = data;
+            //console.log(this.products);
 
-      });
+          });
+      }
+    });
   }
 
   callPhone(phone) {

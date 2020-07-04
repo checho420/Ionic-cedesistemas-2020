@@ -1,3 +1,4 @@
+import { StorageService } from './services/storage.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CalificationPipe } from './pipes/calification.pipe';
@@ -5,10 +6,10 @@ import { CalificationPipe } from './pipes/calification.pipe';
 
 
 @NgModule({
-  declarations: [CalificationPipe],
+  declarations: [CalificationPipe, StorageService],
   imports: [
     CommonModule
   ],
-  exports:[CalificationPipe]
+  exports: [CalificationPipe]
 })
 export class SharedModule { }

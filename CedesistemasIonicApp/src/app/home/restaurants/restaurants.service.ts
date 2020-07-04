@@ -22,4 +22,10 @@ export class RestaurantsService {
     return this.httpClient.get(url);
   }
 
+  deleteRestaurant(id){
+    const url = this.urlRoot + id;
+    return this.httpClient.delete(url);
+
+  }
+
 }
