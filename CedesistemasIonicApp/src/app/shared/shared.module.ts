@@ -6,7 +6,10 @@ import { CalificationPipe } from './pipes/calification.pipe';
 
 
 @NgModule({
-  declarations: [CalificationPipe, StorageService],
+  declarations: [CalificationPipe],
+  providers: [
+    StorageService
+  ],
   imports: [
     CommonModule
   ],

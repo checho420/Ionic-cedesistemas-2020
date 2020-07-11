@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home/tabs/student"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{student.nombres}}</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div>
+
+    <div class="calification" [style.background-color]="student.cedula">
+      {{student.cedula}}
+
+    </div>
+    <ion-img src={{student.foto}}></ion-img>
+  </div>
+
+
+
+  <br>
+  <div class="info-container">
+
+    <ion-grid>
+
+      <ion-row>
+        <ion-col>
+          <ion-icon name="star-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="11">
+          {{student.cedula}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row (click)="callPhone(student.telefono)">
+        <ion-col>
+          <ion-icon name="call-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="11">
+          {{student.telefono}}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-icon name="compass-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="11">
+          {{student.fechaNacimiento}}
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+
+    <!--
+    <ion-list>
+      <ion-item *ngFor="let prod of products" detail="true" [routerLink]="['/home/tabs/restaurants/detail', item]"
+        routerLinkActive="router-link-active">
+
+        <ion-label>
+          <h2>{{prod.nombre}}</h2>
+          <p>$ {{prod.precio}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    -->
+
+
+
+  </div>
+
+</ion-content>

@@ -23,11 +23,20 @@ const routes: Routes = [
             loadChildren: () => import('./restaurants/restaurants.module').then((m) => m.RestaurantsModule)
           },
           {
-            path:'detail',
-            children:[
+            path: 'detail',
+            children: [
               {
-                path:'',
-                loadChildren: () => import('./detail/detail.module').then((m)=> m.DetailModule)
+                path: '',
+                loadChildren: () => import('./detail/detail.module').then((m) => m.DetailModule)
+              }
+            ]
+          },
+          {
+            path: 'add-edit',
+            children: [
+              {
+                path: '',
+                loadChildren: () => import('./add-edit/add-edit.module').then((m) => m.AddEditModule)
               }
             ]
           }

@@ -1,64 +1,43 @@
-import { StorageService } from './../../shared/services/storage.service';
-import { RestaurantsService } from './restaurants.service';
-import { RestaurantModel } from './restaurant.model';
-import { Component, OnInit } from '@angular/core';
-import { interval } from "rxjs";
+import { StudentService } from './../shared/services/student.service';
+import { StudentModel } from './../shared/models/student.model';
 import { AlertController } from '@ionic/angular';
+import { StorageService } from './../../../../../CedesistemasIonicApp/src/app/shared/services/storage.service';
+
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-restaurants',
-  templateUrl: './restaurants.component.html',
-  styleUrls: ['./restaurants.component.scss'],
+  selector: 'app-estudiantes',
+  templateUrl: 'estudiantes.page.html',
+  styleUrls: ['estudiantes.page.scss']
 })
-export class RestaurantsComponent {
+export class EstudiantesPage {
 
-  restaurants: RestaurantModel[] = [];
-  restaurantsAll: RestaurantModel[];
+  students: StudentModel[] = [];
+  studentsAll: StudentModel[] = [];
 
-  constructor(private restaurantsService: RestaurantsService,
+
+
+  constructor(
+    private studentService: StudentService,
     private storageService: StorageService,
     public alertController: AlertController,
-    private activateRoute: ActivatedRoute) {
-
+    private activateRoute: ActivatedRoute
+  ) {
     this.loadRestaurants();
-    this.activateRoute.params.subscribe((params:any)=>{
-      let refresh = window.localStorage.getItem('refresh');
-      if (refresh) {
-        window.localStorage.removeItem("refresh");
-        this.loadRestaurants();
-        
-      }
-    })
-    //this.refresh();
-
-
-
-  }
-
-  refresh() {
-    let int = interval(50000);
-    int.subscribe(r => {
-      console.log("refrescando");
-      //this.loadRestaurants();
-
-    })
   }
 
   loadRestaurants() {
-
     this.storageService.get('restaurats').then((value: any) => {
-
       if (value) {
-        this.restaurants = value;
-        this.restaurantsAll = value;
+        this.students = value;
+        this.studentsAll = value;
       } else {
-        this.restaurantsService.getRestaurats()
-          .subscribe((data: RestaurantModel[]) => {
-            this.restaurants = data;
-            this.restaurantsAll = data;
-            //console.log(this.restaurants);
-
+        this.studentService.getStudents()
+          .subscribe((data: StudentModel[]) => {
+            this.students = data;
+            this.studentsAll = data;
+            console.log(this.students);
           });
       }
     });
@@ -69,14 +48,18 @@ export class RestaurantsComponent {
     if (!text) {
       this.loadRestaurants();
     }
+    /*
     this.restaurants = this.restaurantsAll.filter((r: RestaurantModel) => {
       if (r.nombre.toLowerCase().indexOf(text.toLowerCase()) !== -1) {
         return r;
       }
     });
+    */
   }
 
+
   async delete(id: string) {
+    /*
 
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -105,13 +88,8 @@ export class RestaurantsComponent {
       ]
     });
     await alert.present();
+    */
 
   }
-
-
-
-
-
-
 
 }
